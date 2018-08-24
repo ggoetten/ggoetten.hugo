@@ -1,0 +1,96 @@
+{{ partial "header.html" . }}
+<body lang="en" itemscope itemtype="http://schema.org/Article">
+  <div id="topbar">
+    <div class="wrapper">
+      <header>
+
+        {{ template "partials/sidebar.html" . }}
+
+        {{ $baseurl := .Site.BaseURL }}
+      </header>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="units-row">
+      <div class="unit-100">
+        <p class = "large"><a href="/vita.pdf"><em>Curriculum Vitae</em></a>&nbsp;&nbsp;<a href="/vita.pdf" class="badge badge-small"><i class="fa fa-file-pdf-o"></i>&nbsp;pdf</a></p>
+        <p>My research is focused on biomaterials, development and improvement of these devices. My initial research was on improvement of the natural oxide layer of titanium implants via plasma electrolyte oxidation. In my Ph.D. I start working with hydrogels and these are the two main materials I am mostly working in these recent research project.</p>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="units-row">
+            <div class="unit-50">
+          <h2>Papers</h2>
+          {{ range (where .Data.Pages "Params.kind" "paper").GroupByPublishDate "2006" "desc" }}
+        <div class="units-row">
+        <div class="unit-10">
+        <h3>{{ .Key }}</h3>
+                  </div>
+  <div class="unit-90">
+        <ul class="compact fa-ul">
+        {{ range .Pages.ByPublishDate.Reverse }}
+        <li><i class="fa-li fa  {{ if eq .Type "unpublished" }}fa-file-o {{ else if eq .Params.kind "paper" }}fa-book {{ else }}fa-file {{ end }} fa-fw" style="color:#cecba3;font-size:100%;padding-top:6px;"></i> {{ .Params.citation | safeHTML }}
+        <a href="{{ .Permalink }}" class="badge badge-small">Abstract</a>
+        {{ if isset .Params "file" }}
+        <a href="{{.Site.BaseURL}}files/papers/{{ .Params.file }}" class="badge badge-small"><i class="fa fa-file-pdf-o"></i>&nbsp;pdf</a>
+        {{ end }}
+        </li>
+        {{ end }}
+        </ul>
+        </div>
+        </div>
+            {{ end }}
+                </div>
+                        <div class="unit-50">
+          <h2>Book Chapters</h2>
+          {{ range (where .Data.Pages "Params.kind" "book").GroupByPublishDate "2006" "desc" }}
+<div class="units-row">
+  <div class="unit-10">
+    <h3>{{ .Key }}</h3>
+  </div>
+  <div class="unit-90">
+    <ul class="compact fa-ul">
+{{ range .Pages.ByPublishDate.Reverse }}
+      <li><i class="fa-li fa  {{ if eq .Type "unpublished" }}fa-file-o {{ else if eq .Params.kind "book" }}fa-book {{ else }}fa-file {{ end }} fa-fw" style="color:#cecba3;font-size:100%;padding-top:6px;"></i> {{ .Params.citation | safeHTML }}
+        <a href="{{ .Permalink }}" class="badge badge-small">Abstract</a>
+        {{ if isset .Params "file" }}
+        <a href="{{.Site.BaseURL}}files/papers/{{ .Params.file }}" class="badge badge-small"><i class="fa fa-file-pdf-o"></i>&nbsp;pdf</a>
+        {{ end }}
+      </li>
+{{ end }}
+    </ul>
+  </div>
+</div>
+              {{ end }}
+          <h2>Conference Papers</h2>
+          {{ range (where .Data.Pages "Params.kind" "conference").GroupByPublishDate "2006" "desc" }}
+<div class="units-row">
+  <div class="unit-10">
+    <h3>{{ .Key }}</h3>
+  </div>
+  <div class="unit-90">
+    <ul class="compact fa-ul">
+{{ range .Pages.ByPublishDate.Reverse }}
+      <li><i class="fa-li fa  {{ if eq .Type "unpublished" }}fa-file-o {{ else if eq .Params.kind "conference" }}fa-book {{ else }}fa-file {{ end }} fa-fw" style="color:#cecba3;font-size:100%;padding-top:6px;"></i> {{ .Params.citation | safeHTML }}
+        <a href="{{ .Permalink }}" class="badge badge-small">Abstract</a>
+        {{ if isset .Params "file" }}
+        <a href="{{.Site.BaseURL}}files/papers/{{ .Params.file }}" class="badge badge-small"><i class="fa fa-file-pdf-o"></i>&nbsp;pdf</a>
+        {{ end }}
+      </li>
+{{ end }}
+    </ul>
+  </div>
+</div>
+
+{{ end }}
+</div>
+</div>
+</div>
+<hr class="separator">
+
+{{ partial "whatisthis.html" . }}
+
+{{ partial "foot.html" . }}
+</body>
+</html>

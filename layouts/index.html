@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    {{ partial "meta.html" . }}
+
+    <base href="{{ .Site.BaseURL }}">
+    <title>Homepage | de Lima, G. G.</title>
+    <link rel="canonical" href="{{ .Permalink }}">
+    <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+
+    {{ partial "head_includes.html" . }}
+  </head>
+  <body>
+    <div id="topbar">
+      <div class="wrapper">
+        <header>
+          {{ partial "sidebar.html" . }}
+        </header>
+      </div>
+    </div>
+
+    <div class="wrapper" style="font-size: 0.95em; line-height: 1.05em;">
+    <div class="units-row">
+
+        <div class="unit-70">
+            <div class="bio"></ul>Here you may find important information about teaching class I am lecturing and my personal thoughts about research academia. We as researchers and professors always have our own dream when pursuing our carriers and that's why I intend, with the help of this website, to pursue mine.
+As many of you, you may haver entered this website for my research information or teaching. I love research - discover new techniques and teaching students find the love in what they are currently studying.
+<br>If you are a researcher interested in working with me, please message me at my email and we could probably work with something together. I tend to work in many field areas which gather interests of me, particularly I am more inclined in biomaterials due to the many attractive interests it holds. Particularly, our group have been working with hydrogels to improve the bioactivity and also being able to target drug deliver any compound.
+<br>For my teaching experience I am still an adept learning the ropes of fulfilling the student gaps in gathering an excited interest in knowledge and the epistemology. I tend to use many TED talks for helping me in lecture which help broad my field of view; although, I do love to find new channels and softwares to help students understand difficult concepts of the theory aspects.
+With no further delay, welcome and I hope you enjoy your stay.
+            </div>
+
+        </div>
+        <div class="units-row-end">
+            <div class="unit-1">&nbsp;</div>
+
+            <div class="unit-30">
+                <h3>Education</h3>
+                <ul class="ul-edu fa-ul">
+                    <li>
+                        <i class="fa-li fa fa-graduation-cap"style="color:#cecba3;font-size:100%"></i>
+                        <div class="description">
+                            <p class="course">PhD in Polymers Engineering, 2017</p>
+                            <p class="institution">Athlone Institute of Technology, AIT, Ireland</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-li fa fa-graduation-cap"style="color:#cecba3;font-size:100%"></i>
+                        <div class="description">
+                            <p class="course">MS.C. in Mechanical Engineering, 2012</p>
+                            <p class="institution">Federal University of Paraná, UFPR, Brazil</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-li fa fa-graduation-cap"style="color:#cecba3;font-size:100%"></i>
+                        <div class="description">
+                            <p class="course">BSc. in Physics, 2010</p>
+                            <p class="institution">Federal University of Paraná, UFPR, Brazil</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="wrapper">
+            </div>
+
+          <div class="wrapper" style="font-size: 0.95em; line-height: 1.05em">
+              <div class="units-row-end">
+
+          <h3>Recent Work</h3>
+          <ul class="compact fa-ul">
+            {{ range first 5 (where .Data.Pages.ByDate "Section" "publications").Reverse }}
+            <li><i class="fa-li fa  {{ if eq .Type "unpublished" }}fa-file-o {{ else if eq .Params.kind "book" }}fa-book {{ else }}fa-file {{ end }} fa-fw" style="color:#cecba3;font-size:100%;padding-top:6px;"></i> {{ .Params.citation | safeHTML }}
+              <a href="{{ .Permalink }}" class="badge badge-small">Abstract</a>
+              {{ if isset .Params "file" }}<a href="{{.Site.BaseURL}}files/papers/{{ .Params.file }}" class="badge badge-small"><i class="fa fa-file-pdf-o"></i>&nbsp;pdf</a>{{ end }}
+            </li>
+	    {{ end }}
+          </ul>
+
+      <div class="wrapper" style="font-size: 0.95em; line-height: 1.05em;">
+          <div class="units-row">
+          <footer class="group">
+            <nav class="navbar navbar-right"><a href="/publications">&rarr; More Papers</a></nav>
+          </footer>
+        </div>
+    </div>
+
+<!--<div>
+          <h3>Current Teaching</h3>
+	  <ul class="compact fa-ul">
+            {{ range (where .Data.Pages.ByDate "Section" "teaching").Reverse }}
+	    {{ if (ge .Date.Unix now.Unix) }}
+	    {{ if (le .Date.Unix (add now.Unix 7776000)) }}
+            <li><i class="fa-li fa fa-mortar-board fa-fw" style="color:#cecba3;font-size:100%;padding-top:6px;"></i><a href="{{ .Permalink }}"><span class="caps">{{ .Title }}</span></a>, {{ .Date.Format "January" }}&ndash;{{ .Params.enddate | dateFormat "January 2006" }}.  {{ partial "comingsoon.html" . }}
+            </li>
+	    {{ end }}
+	    {{ end }}
+	    {{ end }}
+
+            {{ range (where .Data.Pages.ByDate "Section" "teaching").Reverse }}
+	    {{ if (le .Date.Unix now.Unix) }}
+	    {{ if (le now.Unix (add .Date.Unix .Params.duration)) }}
+            <li><i class="fa-li fa fa-mortar-board fa-fw" style="color:#cecba3;font-size:80%;padding-top:6px;"></i><a href="{{ .Permalink }}"><span class="caps">{{ .Title }}</span></a>, {{ .Date.Format "January" }}&ndash;{{ .Params.enddate | dateFormat "January 2006" }}. {{ partial "nowon.html" . }}
+            </li>
+	    {{ end }}
+	    {{ end }}
+	    {{ end }}
+            {{ range (where .Data.Pages.ByDate "Section" "teaching").Reverse }}
+	    {{ $classend := (add .Date.Unix .Params.duration) }}
+	    {{ if (ge now.Unix $classend ) }}
+	    {{ if (le now.Unix (add $classend 10368000)) }}
+
+            <li><i class="fa-li fa fa-mortar-board fa-fw" style="color:#cecba3;font-size:80%;padding-top:6px;"></i><a href="{{ .Permalink }}"><span class="caps">{{ .Title }}</span></a>, {{ .Date.Format "January" }}&ndash;{{ .Params.enddate | dateFormat "January 2006" }}. <span class="badge badge-small">completed</span>
+            </li>
+	    {{ end }}
+	    {{ end }}
+	    {{ end }}
+          </ul>
+        </div>
+      </div>
+
+      <div class="wrapper" style="font-size: 0.95em; line-height: 1.05em;">
+          <div class="units-row">
+          <footer class="group">
+            <nav class="navbar navbar-right"><a href="teaching">&rarr; Other Classes</a></nav>
+          </footer>
+        </div>
+  </div>
+-->
+<div>
+  <h3>Blog updates</h3>
+  <ul class="compact fa-ul">
+    {{ range first 2 (where .Data.Pages.ByDate "Section" "blog").Reverse }}
+    <div class="units-row">
+      <div class="unit-100">
+        <h5><a href="{{ .Permalink }}">{{ .Title }}</a><h5>
+        <h5>{{ .Date.Format "2 January 2006" }}</h5>
+      </div>
+{{ end }}
+  </ul>
+    </div>
+      </div>
+        </div>
+
+<!--        <div class="wrapper" style="font-size: 0.95em; line-height: 1.05em;">
+            <div class="units-row">
+            <footer class="group">
+              <nav class="navbar navbar-right"><a href="blog">&rarr; More posts</a></nav>
+            </footer>
+          </div>
+    </div>
+-->
+    <hr class="separator">
+
+    {{ partial "whatisthis.html" . }}
+
+    {{ partial "foot.html" . }}
+  </body>
+</html>
